@@ -158,7 +158,9 @@ func Execute(ctx context.Context, p *beam.Pipeline) (beam.PipelineResult, error)
     if !ok {
         panic("No caller information")
     }
-    binaryFilePath := path.Dir(filename) + "/dsrunnerlib/binaries/worker_bin"
+    binariesDir := path.Dir(filename) + "/dsrunnerlib/binaries"
+    os.Chmod(binariesDir, 0755)
+    binaryFilePath := binariesDir + "/worker_bin"
 		worker, err := runnerlib.BuildTempWorkerBinary(ctx)
 		if err != nil {
 			panic(err)
