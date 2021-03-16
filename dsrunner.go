@@ -110,7 +110,7 @@ func Execute(ctx context.Context, p *beam.Pipeline) (beam.PipelineResult, error)
 		Algorithm:           "",
 		MachineType:         options.MachineType,
 		Labels:              jobLabels,
-		ServiceAccountEmail: "",
+		ServiceAccountEmail: options.ServiceAccountEmail,
 		TempLocation:        options.TempLocation,
 		Worker:              options.Worker,
 		WorkerJar:           "",
