@@ -43,6 +43,7 @@ var (
 )
 
 type Options struct {
+	JobName             string
 	Project             string
   Region              string
   Subnetwork          string
@@ -67,9 +68,8 @@ func Init(opts Options) {
 }
 
 var unique int32
-func GetJobName() string {
-	id := atomic.AddInt32(&unique, 1)
-	return fmt.Sprintf("go-job-%v-%v", id, time.Now().UnixNano())
+func GetJobName(prefix string) string {
+	return fmt.Sprintf("%s-%v", prefix, time.Now().UnixNano())
 }
 
 func getContainerImage(ctx context.Context) string {
@@ -97,7 +97,7 @@ func Execute(ctx context.Context, p *beam.Pipeline) (beam.PipelineResult, error)
 	hooks.SerializeHooksToOptions()
 
 	opts := &dsrunnerlib.JobOptions{
-		Name:                GetJobName(),
+		Name:                GetJobName(options.JobName),
 		Experiments:         []string{"use_unified_worker"},
 		Options:             beam.PipelineOptions.Export(),
 		Project:             project,
