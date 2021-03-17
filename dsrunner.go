@@ -45,6 +45,7 @@ var (
 type Options struct {
 	Project             string
   Region              string
+  Subnetwork          string
   NumWorkers          int64
 	MachineType         string
 	ServiceAccountEmail string
@@ -102,7 +103,7 @@ func Execute(ctx context.Context, p *beam.Pipeline) (beam.PipelineResult, error)
 		Region:              region,
 		Zone:                "",
 		Network:             "",
-		Subnetwork:          "",
+		Subnetwork:          options.Subnetwork,
 		NoUsePublicIPs:      false,
 		NumWorkers:          options.NumWorkers,
 		MaxNumWorkers:       options.MaxNumWorkers,
