@@ -53,6 +53,7 @@ type Options struct {
   TempLocation        string
 	StagingLocation     string
   DryRun              bool
+  Async               bool
   CreateBinary        bool
 
 	// Worker is the worker binary override.
@@ -174,7 +175,7 @@ func Execute(ctx context.Context, p *beam.Pipeline) (beam.PipelineResult, error)
     return nil, nil
   }
 
-	return dsrunnerlib.Execute(ctx, model, opts, workerURL, jarURL, modelURL, "", true)
+	return dsrunnerlib.Execute(ctx, model, opts, workerURL, jarURL, modelURL, "", options.Async)
 }
 
 func Run(p *beam.Pipeline) error {
