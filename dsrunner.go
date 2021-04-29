@@ -105,7 +105,7 @@ func Execute(ctx context.Context, p *beam.Pipeline) (beam.PipelineResult, error)
 		Zone:                "",
 		Network:             "",
 		Subnetwork:          options.Subnetwork,
-		NoUsePublicIPs:      false,
+		NoUsePublicIPs:      true,
 		NumWorkers:          options.NumWorkers,
 		MaxNumWorkers:       options.MaxNumWorkers,
 		DiskSizeGb:          0,
